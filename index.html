@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine's Special</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Suppress Tailwind CDN warning in console
+      const originalWarn = console.warn;
+      console.warn = function (...args) {
+        if (args[0]?.includes?.("cdn.tailwindcss.com")) return;
+        originalWarn.apply(console, args);
+      };
+    </script>
+    <link rel="icon" href="/favicon.ico?v=2" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png?v=2"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png?v=2"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="/favicon-48x48.png?v=2"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/favicon-96x96.png?v=2"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicon-192x192.png?v=2"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/favicon-512x512.png?v=2"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png?v=2"
+    />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#ffffff" />
+
+    <link rel="manifest" href="/site.webmanifest?v=2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --aurora-1: #3b0764;
+        --aurora-2: #701a75;
+        --aurora-3: #4c1d95;
+        --aurora-4: #831843;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: #020205;
+        color: #fff;
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      .font-serif {
+        font-family: "Cormorant Garamond", serif;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .glow-text {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+
+      @keyframes aurora {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg) scale(1);
+        }
+        50% {
+          transform: translate(-45%, -55%) rotate(180deg) scale(1.2);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg) scale(1);
+        }
+      }
+      .aurora-bg {
+        position: fixed;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        background:
+          radial-gradient(circle at 50% 50%, var(--aurora-1), transparent 50%),
+          radial-gradient(circle at 20% 80%, var(--aurora-2), transparent 50%),
+          radial-gradient(circle at 80% 20%, var(--aurora-3), transparent 50%),
+          radial-gradient(circle at 0% 0%, var(--aurora-4), transparent 50%);
+        filter: blur(80px);
+        opacity: 0.4;
+        z-index: -1;
+        animation: aurora 30s linear infinite;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@19.0.0",
+          "react-dom": "https://esm.sh/react-dom@19.0.0",
+          "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+          "clsx": "https://esm.sh/clsx@2.1.1",
+          "tailwind-merge": "https://esm.sh/tailwind-merge@2.3.0",
+          "framer-motion": "https://esm.sh/framer-motion@11.11.11?external=react,react-dom",
+          "lucide-react": "https://esm.sh/lucide-react@0.454.0?external=react",
+          "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+          "react/": "https://esm.sh/react@^19.2.4/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
