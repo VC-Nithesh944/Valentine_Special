@@ -1,20 +1,50 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 💖 A Valentine, Written in Code
 
-# Run and deploy your AI Studio app
+> Not everything meaningful needs to be said out loud.  
+> Some things are better built.
 
-This contains everything you need to run your app locally.
+---
 
-View your app in AI Studio: https://ai.studio/apps/drive/1eJtStSIQZvUz1EQpPg29r1DrcGnYMQCc
+## 🌹 What is this?
 
-## Run Locally
+This is not just a website.  
+This is a **feeling**, carefully translated into pixels, motion, and quiet words.
 
-**Prerequisites:**  Node.js
+Built for one person.  
+Meant to be felt, not skimmed.
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## ✨ Why I Built This
+
+Because:
+- Words sometimes fall short
+- Effort never does
+- And some emotions deserve more than a message or a post
+
+This project is my way of saying:
+> *“I care enough to slow down and make something real.”*
+
+---
+
+## 🎬 What Makes It Different
+
+- 🌊 Scroll-based storytelling  
+- 💫 Smooth, cinematic animations  
+- ❤️ Vulnerable, human-written
+- 🎨 Minimal, premium design  
+- 🧠 Built with intention, not templates  
+
+Every section exists for a reason.  
+Nothing here is random.
+
+---
+
+## 🛠️ Tech Stack
+
+```txt
+⚛️ React + TypeScript
+🎨 Tailwind CSS
+✨ Framer Motion
+🧩 Aceternity UI (free components)
+
