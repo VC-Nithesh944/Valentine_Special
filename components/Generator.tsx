@@ -43,19 +43,52 @@ export const Generator: React.FC = () => {
     setGeneratedUrl(url.toString());
   };
 
+  const getPreviewUrl = () => {
+    if (!generatedUrl) {
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        url.searchParams.set("showGifts", "true");
+        return url.toString();
+      }
+      return "";
+    }
+
+    const url = new URL(generatedUrl);
+    url.searchParams.set("showGifts", "true");
+    return url.toString();
+  };
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedUrl);
     setCopied(true);
     setShowGifts(true);
     setTimeout(() => {
       setCopied(false);
-    }, 500);
+    }, 3000);
   };
 
   const openPayment = (amount: string, title: string) => {
     setSelectedGift({ amount, title });
     setIsPayOpen(true);
   };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("showGifts") === "true") {
+      setShowGifts(true);
+    }
+
+    if (params.has("from") && params.has("to") && params.has("em")) {
+      const baseUrl = window.location.origin + window.location.pathname;
+      const url = new URL(baseUrl);
+      url.searchParams.set("from", params.get("from") ?? "");
+      url.searchParams.set("to", params.get("to") ?? "");
+      url.searchParams.set("em", params.get("em") ?? "");
+      setGeneratedUrl(url.toString());
+    }
+  }, []);
 
   useEffect(() => {
     if (showGifts) {
@@ -113,7 +146,7 @@ export const Generator: React.FC = () => {
               <div className="glass-card p-8 md:p-12 rounded-[2.5rem] space-y-8 border border-white/5 shadow-2xl">
                 <div className="space-y-6">
                   <div className="group">
-                    <label className="text-[10px] tracking-[0.4em] uppercase text-white/30 mb-2 block font-medium group-focus-within:text-rose-400 transition-colors">
+                    <label className="text-[10px] tracking-[0.4em] uppercase text-white/70 mb-2 block font-medium group-focus-within:text-rose-400 transition-colors">
                       Your Name
                     </label>
                     <input
@@ -126,7 +159,7 @@ export const Generator: React.FC = () => {
                   </div>
 
                   <div className="group">
-                    <label className="text-[10px] tracking-[0.4em] uppercase text-white/30 mb-2 block font-medium group-focus-within:text-rose-400 transition-colors">
+                    <label className="text-[10px] tracking-[0.4em] uppercase text-white/70 mb-2 block font-medium group-focus-within:text-rose-400 transition-colors">
                       Your Partner's Name
                     </label>
                     <input
@@ -139,9 +172,9 @@ export const Generator: React.FC = () => {
                   </div>
 
                   <div className="group">
-                    <label className="text-[10px] tracking-[0.4em] uppercase text-white/30 mb-2 block font-medium group-focus-within:text-rose-400 transition-colors">
+                    <label className="text-[10px] tracking-[0.4em] uppercase text-white/70 mb-2 block font-medium group-focus-within:text-rose-400 transition-colors">
                       Your Email{" "}
-                      <span className="text-white/20 ml-2 normal-case tracking-normal">
+                      <span className="text-white/50 ml-2 normal-case tracking-normal">
                         (To receive the confession)
                       </span>
                     </label>
@@ -210,18 +243,6 @@ export const Generator: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                      <motion.a
-                        href={generatedUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full py-5 border border-white/10 bg-white/5 text-white rounded-2xl font-bold tracking-widest text-xs uppercase flex items-center justify-center gap-2 hover:bg-white/10 transition-colors cursor-pointer"
-                      >
-                        <ExternalLink size={16} />
-                        View Live Preview
-                      </motion.a>
-
                       <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -255,17 +276,28 @@ export const Generator: React.FC = () => {
               <div className="sticky top-4 z-20 pt-6 pb-4 text-center mb-6">
                 <button
                   onClick={() => setShowGifts(false)}
-                  className="mb-2 text-white/30 hover:text-white flex items-center gap-2 mx-auto text-[10px] uppercase tracking-widest transition-colors"
+                  className="mb-2 text-white/50 hover:text-white flex items-center gap-2 mx-auto text-[10px] uppercase tracking-widest transition-colors"
                 >
                   <ArrowLeft size={14} /> Back to Link
                 </button>
                 <h2 className="text-5xl md:text-6xl font-serif text-white mb-4">
                   Complete the Surprise
                 </h2>
+                <motion.a
+                  href={getPreviewUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full mb-6 py-5 border border-white/10 bg-white/5 text-white rounded-2xl font-bold tracking-widest text-xs uppercase flex items-center justify-center gap-2 hover:bg-white/10 transition-colors cursor-pointer"
+                >
+                  <ExternalLink size={16} />
+                  View Live Preview of Your Website
+                </motion.a>
                 <p className="text-neutral-400 font-light tracking-wide max-w-xl mx-auto">
                   Bro…❤️ this project is really close to my heart. If it touched
-                  you and you’d like to help me make it real for My Soulmate, I’d
-                  appreciate it more than I can say✨. No pressure at all.
+                  you and you’d like to help me make it real for My Soulmate,
+                  I’d appreciate it more than I can say✨. No pressure at all.
                 </p>
               </div>
 
@@ -373,6 +405,28 @@ export const Generator: React.FC = () => {
         amount={selectedGift.amount}
         title={selectedGift.title}
       />
+
+      <AnimatePresence>
+        {showGifts && copied && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed top-4 left-4 right-4 md:left-auto md:right-6 md:w-96 z-50 flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-green-500/90 to-emerald-500/90 rounded-2xl border border-green-400/30 shadow-2xl backdrop-blur-md"
+          >
+            <Check size={20} className="text-white flex-shrink-0" />
+            <div className="flex-1 min-w-0">
+              <p className="text-white font-semibold text-sm md:text-base">
+                Link copied to clipboard!
+              </p>
+              <p className="text-white/80 text-xs md:text-sm truncate">
+                Ready to share your surprise
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -24,7 +24,7 @@ export const GIFTS = {
   SPECIAL: {
     id: "special",
     name: "Something Special",
-    amount: "149",
+    amount: "99",
     description: "A grand surprise that she will remember forever."
   }
 };

@@ -39,7 +39,7 @@ export const BackgroundEffects: React.FC = () => {
   const bgColor = useTransform(
     scrollYProgress,
     [0, 0.3, 0.6, 1],
-    ["#020205", "#0f0f20", "#191520", "#0a0a0c"]
+    ["#020205", "#0b0b19", "#17131d", "#0a0a0c"]
   );
 
   return (

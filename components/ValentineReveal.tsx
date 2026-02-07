@@ -61,7 +61,7 @@ export const ValentineReveal: React.FC = () => {
           transition={{ delay: 2, duration: 1.5 }}
           className="mt-20 flex flex-col items-center gap-4"
         >
-          <p className="text-white/30 tracking-[0.4em] font-light uppercase text-[10px]">
+          <p className="text-white/70 tracking-[0.4em] font-light uppercase text-[10px]">
             Infinite Love, {yourName}
           </p>
         </motion.div>

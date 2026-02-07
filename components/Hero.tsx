@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
         transition={{ delay: 3, duration: 1 }}
         className="absolute bottom-8 flex flex-col items-center gap-6"
       >
-        <span className="text-white/20 text-[9px] tracking-[0.6em] uppercase font-medium">Scroll to feel</span>
+        <span className="text-white/50 text-[9px] tracking-[0.6em] uppercase font-medium">Scroll to feel</span>
         <motion.div 
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
